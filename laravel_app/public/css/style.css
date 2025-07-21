@@ -1,0 +1,138 @@
+body{
+    background-color: #f4f0ed;
+}
+
+.container{
+    max-width: 980px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.memo_area{
+    display: flex;
+    justify-content: space-around;
+}
+
+.memo_form{
+    text-align: center;
+    width: 40%;
+}
+
+.memo_form input[type="submit"]{
+    border-radius: 5px;
+    border: none;
+    padding: 5px 20px;
+    background-color: #38B000;
+    color: #fefefe;
+    font-weight: bold;
+}
+
+.memo_form h2{
+    text-align: center;
+}
+
+.memo_text{
+    display: block;
+    margin: 0 auto 15px;
+    border: none;
+    height: 20px;
+}
+
+.memo_show{
+    width: 60%;
+}
+
+.memo_item{
+    background-color: #fefefe;
+    display: flex;
+    width: 100%;
+    margin-top: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.memo_title{
+    width: 90%;
+}
+
+.memo_title p{
+    margin: 0;
+}
+
+.memo_title time{
+    font-size: 10px;
+}
+
+.btn_area{
+    display: flex;
+    margin: auto;
+}
+
+.edit_form,.del_area{
+    margin-right: 10px;
+}
+
+.edit_form input,
+.del_area input ,
+.hold_area input{
+    border-radius: 5px;
+    padding: 5px 12px;
+    border: none;
+}
+
+.memo_form input[type="submit"]:hover,
+.edit_form input:hover,
+.del_area input:hover,
+.hold_area input:hover{
+    opacity: .8;
+}
+
+.edit_form input{
+    background-color: #38B000;
+    color: #fefefe;
+    font-weight: bold;
+}
+
+.del_area input{
+    background-color: #d64045;
+    color: #fefefe;
+    font-weight: bold;
+}
+
+.hold_area input{
+    background-color: #d7ee0b;
+    color: #fefefe;
+    font-weight: bold;
+}
+header {
+    height: 80px;
+}
+.header_flex {
+    display: flex;
+    justify-content: space-between;
+}
+.left_header {
+    width: 30%;
+}
+.right_header {
+    width: 70%;
+    display: flex;
+    justify-content: end;
+}
+.right_header ul {
+    list-style: none;
+    display: flex;
+}
+.right_header ul li {
+    margin-left: 20px;
+}
+.right_header ul li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+.logout_btn {
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+}
