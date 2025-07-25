@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MemoController;
 use Illuminate\Support\Facades\Auth;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,10 +14,15 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', 'App\\Http\\Controllers\\MemoController@show');
+    Route::post('/add', 'App\\Http\\Controllers\\MemoController@add');
+    Route::post('/delete', 'App\\Http\\Controllers\\MemoController@delete');
+    Route::get('edit/{edit_id}', 'App\\Http\\Controllers\\MemoController@getEdit');
+    Route::post('update', 'App\\Http\\Controllers\\MemoController@postEdit');
+});
