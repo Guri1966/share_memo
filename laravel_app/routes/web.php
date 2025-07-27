@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemoController;
+use App\Http\Controllers\TimeLienController;
+use App\Http\Controllers\TimeLineController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +27,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/delete', 'App\\Http\\Controllers\\MemoController@delete');
     Route::get('edit/{edit_id}', 'App\\Http\\Controllers\\MemoController@getEdit');
     Route::post('update', 'App\\Http\\Controllers\\MemoController@postEdit');
+    Route::get('/timeline', [TimeLineController::class, 'show']);
 });

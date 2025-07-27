@@ -18,14 +18,6 @@ class MemoController extends Controller
             ->with('memo_info', $memo_info);
     }
 
-    // public function show()
-    // {
-    //     $memo_info = Memo::orderBy('invalid', 'desc')->get();
-
-    //     return view('home')
-    //         ->with('memo_info', $memo_info);
-    // }
-
     public function add(Request $request)
     {
         $user_id = Auth::id();
@@ -50,35 +42,24 @@ class MemoController extends Controller
 
     public function postEdit(Request $request)
     {
-        $request->validate([
-            'edit_memo' => 'required|string|max:255'
-        ]);
+        $user_id = Auth::id();          //ログインしている人のidを調べよう
+        $edit_id = $request->edit_id;  //requestから編集したいidをもらって
+        $edit_memo = $request->edit_memo; //requestから編集メモをもらって
 
-        $edit_id = $request->edit_id;
-        $edit_memo = $request->edit_memo;
-
-        $memo = Memo::find($edit_id);
-        if ($memo) {
-            $memo->content = $edit_memo;
-            $memo->save();
-        }
-
+        Memo::where('id', $edit_id)
+            ->where('user_id', $user_id)->update(['content' => $edit_memo]);
         return redirect('/');
     }
 
+
     public function delete(Request $request)
     {
+        $user_id = Auth::id(); // 追記
         $delete_id = $request->delete_id;
-        $memo_model = Memo::find($delete_id);
+        Memo::where('user_id', $user_id)
+            ->where('id', $delete_id)->update(['invalid' => 1]); // 変更 （論理削除の実装:invalid=0=>show)
 
-        if (!$memo_model) {
-            return redirect('/')
-                ->with('error', '指定されたメモは存在しません');
-        }
-
-        $memo_model->delete();
-
-        return redirect('/')->with('success', '削除しました');
+        return redirect('/'); // 変更
     }
 
     public function find(Request $request)

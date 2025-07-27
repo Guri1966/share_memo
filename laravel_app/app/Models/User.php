@@ -15,6 +15,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Memo::class);
     }
+
     /**
      * The attributes that are mass assignable.
      *
