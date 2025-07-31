@@ -3,12 +3,14 @@
     <div class="memo_show"> @foreach($memo_info as $memo) 
         <div class="memo_item">
             <div class="memo_title">
-                <time>ユーザー名：{{ $memo->user->name }} {{$memo->created_at}}</time>
+                <time>
+                    <a href="/user_profile/{{$memo->user_id}}"> ユーザー名：{{ $memo->user->name }} </a>{{$memo->created_at}} 
+                </time>
                 <p>{{$memo->content}}</p>
             </div>@if($current_user_id === $memo->user_id) 
         <div class="btn_area">
             <div class="edit_form">
-            <form action="{{ asset('/edit/'.$memo->id) }}" method="get">@csrf 
+            <form action="{{ asset('/edit'.$memo->id) }}" method="get">@csrf 
                 <input type="submit" value="編集">
             </form>
             </div>

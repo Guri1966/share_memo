@@ -28,7 +28,7 @@
                     </div>
                     <div class="btn_area">
                         <div class="edit_form">
-                            <form action="{{ url('/edit/'.$memo->id) }}" method="get">
+                            <form action="{{ url('/edit'.$memo->id) }}" method="get">
                                 <input type="submit" value="編集">
                             </form>
                         </div>
