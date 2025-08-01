@@ -30,5 +30,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('update', 'App\\Http\\Controllers\\MemoController@postEdit');
     Route::get('/timeline', [TimeLineController::class, 'show']);
     Route::get('/user_profile/{user_id}', [UserProfileController::class, 'show']);
-    Route::post('/follow/{follow_id}', [UserProfileController::class, 'followUser']);
+    // フォロー解除
+    Route::post('/unfollow/{id}', [UserProfileController::class, 'unfollowUser'])->name('unfollow');
+    // フォロー
+    Route::post('/follow/{id}', [UserProfileController::class, 'followUser'])->name('follow');
 });

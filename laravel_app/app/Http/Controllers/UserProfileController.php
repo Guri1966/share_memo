@@ -10,16 +10,6 @@ use Illuminate\Support\Facades\Auth; // 追加
 
 class UserProfileController extends Controller
 {
-    public function show_1($user_id)
-    {   // メモ一覧を取得
-        $memo_info = Memo::where('user_id', $user_id)->where('invalid', 0)->get();
-        // 対象のユーザー情報を取得
-        $user_info = User::find($user_id);
-        return view('user_profile')
-            ->with('memo_info', $memo_info)
-            ->with('user_info', $user_info);
-    }
-
     public function show($user_id)
     {
         // メモ一覧を取得
@@ -34,6 +24,12 @@ class UserProfileController extends Controller
         $followed_count = Follow::where('follow_id', $user_id)
             ->where('invalid', 0)->count();
 
+        // フォロー数を取得
+        $follow_count = Follow::where('user_id', $user_id)->where('invalid', 0)->count();
+
+        // フォロワー数を取得
+        $followed_count = Follow::where('follow_id', $user_id)->where('invalid', 0)->count();
+
         // フォローしているかどうかを判別
         $is_follow = Follow::where('user_id', $current_user_id)
             ->where('follow_id', $user_id)
@@ -42,6 +38,8 @@ class UserProfileController extends Controller
 
         return view('user_profile')
             ->with('memo_info', $memo_info)
+            ->with('follow_count', $follow_count)
+            ->with('followed_count', $followed_count)
             ->with('is_follow', $is_follow)
             ->with('current_user_id', $current_user_id)
             ->with('user_info', $user_info);

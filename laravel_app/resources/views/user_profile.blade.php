@@ -1,21 +1,19 @@
 @extends('layouts.base') @section('content') 
 <div class="user_profile_area">
+ @if($user_info->id !== $current_user_id) 
   @if($is_follow) 
-<form action="/unfollow/{{$user_info->id}}" method="post">
-    @csrf 
-    <input class="unfollow-btn" type="submit" value="フォローを外す">
-</form>
-@else 
-<form action="/follow/{{$user_info->id}}" method="post">
-    @csrf 
-    <input class="follow-btn" type="submit" value="フォローする">
-</form>
-@endif
+<form action="/unfollow/{{$user_info->id}}" method="post">@csrf 
+  <input class="unfollow-btn" type="submit" value="フォローを外す">
+</form>@else 
+<form action="/follow/{{$user_info->id}}" method="post">@csrf 
+  <input class="follow-btn" type="submit" value="フォローする">
+</form>@endif 
+@endif 
 
   <h2>ユーザー名：{{$user_info->name}}</h2>
   <ul class="profile_list">
-    <li>フォロー数：0</li>
-    <li>フォロワー数：0</li>
+    <li>フォロー数：{{$follow_count}}</li>  {{--追記 --}}
+    <li>フォロワー数：{{$followed_count}}</li>
     <li>お気に入り数：0</li>
   </ul>
   <div class="memo_show" style="margin: auto">@foreach($memo_info as $memo) 
